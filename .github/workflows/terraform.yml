@@ -26,16 +26,16 @@ steps:
     cli_config_credentials_hostname: app.terraform.io
     cli_config_credentials_token: ${{ secrets.tf_api_token }}
 
-      - name: Terraform Init
-        id: init
-        run: terraform init
+- name: Terraform Init
+  id: init
+  run: terraform init
       
-      - name: Terraform Validate
-        id: validate
-        run: terraform validate -no-color
+- name: Terraform Validate
+  id: validate
+  run: terraform validate -no-color
 
-      - name: Terraform Plan
-        run: terraform plan -no-color
+- name: Terraform Plan
+  run: terraform plan -no-color
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+- name: Terraform Apply
+  run: terraform apply -auto-approve
