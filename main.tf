@@ -2,18 +2,21 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.27"
+      version = "~> 3.47"
     }
   }
 
-  required_version = ">= 0.14.9"
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "dj-test"
+    workspaces {
+      name = "StateSpace"
 }
-
+  }
+}
 provider "aws" {
-  profile = "default"
-  region  = "us-west-2"
+  region = "us-east-2"
 }
-
 resource "aws_instance" "app_server" {
   ami           = "ami-830c94e3"
   instance_type = "t2.micro"
